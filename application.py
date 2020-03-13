@@ -7,5 +7,5 @@ db = SQL("sqlite:///froshims.db")
 @app.route("/")
 def index():
   q = request.args.get("q")
-  rows = db.execute(f"SELECT * FROM registrants where name = '{q}'")
+  rows = db.execute("SELECT * FROM registrants where name = :q", q=q)
   return render_template("index.html", rows=rows)
